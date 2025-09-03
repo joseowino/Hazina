@@ -230,23 +230,27 @@ Full API documentation available at: `/api/documentation`
 ### **Project Structure**
 
 ```
-├── app/
-│   ├── Http/Controllers/      # Application controllers
-│   ├── Models/                # Eloquent models
-│   ├── Services/              # Business logic services
-│   └── Jobs/                  # Queue jobs
-├── database/
-│   ├── migrations/            # Database schema
-│   └── seeders/              # Test data
-├── resources/
-│   ├── views/                # Blade templates
-│   ├── js/                   # JavaScript files
-│   └── css/                  # Stylesheets
-├── routes/
-│   ├── web.php               # Web routes
-│   └── api.php               # API routes
-├── tests/                    # PHPUnit tests
-└── docker/                   # Docker configuration
+personal-finance-tracker/
+├── public/
+│   ├── index.php
+│   ├── login.php
+│   ├── register.php
+│   └── logout.php
+├── includes/
+│   ├── config.php
+│   ├── database.php
+│   ├── functions.php
+│   └── session.php
+├── classes/
+│   ├── Database.php
+│   ├── User.php
+│   └── Validator.php
+├── assets/
+│   ├── css/style.css
+│   └── js/main.js
+├── sql/
+│   └── schema.sql
+└── .env
 ```
 
 ### **Database Schema**
