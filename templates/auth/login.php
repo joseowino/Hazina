@@ -1,5 +1,7 @@
-<?php $title = 'Login - Personal Finance Tracker'; ?>
-<?php ob_start(); ?>
+<?php 
+    $title = 'Login - Personal Finance Tracker';
+    ob_start();
+?>
 
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
@@ -39,5 +41,7 @@
     </div>
 </div>
 
-<?php $content = ob_get_clean(); ?>
-<?php include __DIR__ . '/../layout.php'; ?>
+<?php 
+    $content = ob_get_clean(); 
+    include __DIR__ . '/../layout.php'; 
+?>
