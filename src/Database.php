@@ -12,7 +12,7 @@ class Database
     
     private function __construct()
     {
-        $config = require __DIR__ . '/../config/database.php';
+        $config = require __DIR__ . '/../config/database.php'; 
         $dbPath = $config['sqlite']['database'];
         
         // Ensure database directory exists
