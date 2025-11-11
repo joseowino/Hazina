@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS companies (
     email VARCHAR(255) UNIQUE NOT NULL,
     user_name VARCHAR(100) NOT NULL,
     company_name VARCHAR(100) NOT NULL,
-    company_address VARCHAR(100)
+    company_address VARCHAR(100),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -24,19 +24,11 @@ CREATE TABLE IF NOT EXISTS companies (
 CREATE TABLE IF NOT EXISTS accounts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_name VARCHAR(100) NOT NULL,
-    account_type VARCHAR(20) NOT NULL CHECK (account_type IN ('checking', 'savings', 'credit_card', 'investment')),
+    account_type VARCHAR(20) NOT NULL CHECK (account_type IN ('bank', 'income', 'expense')),
     is_active BOOLEAN DEFAULT 1,
+    memo TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-);
-
--- Categories table
-CREATE TABLE IF NOT EXISTS categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    category_name VARCHAR(100) NOT NULL,
-    category_type VARCHAR(10) NOT NULL CHECK (type IN ('income', 'expense')),
-    color VARCHAR(7) DEFAULT '#007bff',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 );
 
 -- Transactions table
