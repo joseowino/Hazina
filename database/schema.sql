@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS accounts (
 -- Transactions table
 CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    account_id INTEGER NOT NULL,
+    bank_account INTEGER NOT NULL,
+    trnsaction_account INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
     company_id INTEGER NOT NULL
     particulars VARCHAR(100)
@@ -43,7 +44,8 @@ CREATE TABLE IF NOT EXISTS transactions (
     transaction_date DATE NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE,
+    FOREIGN KEY (bank_account) REFERENCES accounts(id) ON DELETE CASCADE,
+    FOREIGN KEY (trnsaction_account) REFERENCES accounts(id) ON DELETE CASCADE,
     FOREIGN KEY (category_id) REFERENCES categories(id)
     FOREIGN KEY (company_id) REFERENCES companies(id)
 );
