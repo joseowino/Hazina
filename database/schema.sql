@@ -13,14 +13,11 @@ CREATE TABLE IF NOT EXISTS users (
 -- Accounts table  
 CREATE TABLE IF NOT EXISTS accounts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    type VARCHAR(20) NOT NULL CHECK (type IN ('checking', 'savings', 'credit_card', 'investment')),
-    balance DECIMAL(10,2) DEFAULT 0.00,
+    account_name VARCHAR(100) NOT NULL,
+    account_type VARCHAR(20) NOT NULL CHECK (type IN ('checking', 'savings', 'credit_card', 'investment')),
     is_active BOOLEAN DEFAULT 1,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Categories table
