@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE,
     FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (company_id) REFERENCES companies(id)
 );
 
 -- Budgets table
