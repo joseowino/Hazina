@@ -52,15 +52,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 CREATE TABLE IF NOT EXISTS sessions (
     id VARCHAR(128) PRIMARY KEY,
     user_id INTEGER,
-    data TEXT,
+    session_data TEXT,
     expires_at DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
--- Create indexes for better performance
-CREATE INDEX IF NOT EXISTS idx_accounts_user_id ON accounts(user_id);
-CREATE INDEX IF NOT EXISTS idx_categories_user_id ON categories(user_id);
-CREATE INDEX IF NOT EXISTS idx_transactions_account_id ON transactions(account_id);
-CREATE INDEX IF NOT EXISTS idx_transactions_category_id ON transactions(category_id);
-CREATE INDEX IF NOT EXISTS idx_transactions_date ON transactions(transaction_date);
-CREATE INDEX IF NOT EXISTS idx_budgets_user_id ON budgets(user_id);
