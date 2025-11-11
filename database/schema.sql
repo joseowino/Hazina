@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
+    company_id INTEGER NOT NULL
+    particulars VARCHAR(100)
     amount DECIMAL(10,2) NOT NULL,
     memo TEXT,
     transaction_date DATE NOT NULL,
