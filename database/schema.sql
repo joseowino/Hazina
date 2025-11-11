@@ -56,20 +56,6 @@ CREATE TABLE IF NOT EXISTS transactions (
     FOREIGN KEY (company_id) REFERENCES companies(id)
 );
 
--- Budgets table
-CREATE TABLE IF NOT EXISTS budgets (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    category_id INTEGER NOT NULL,
-    amount DECIMAL(10,2) NOT NULL,
-    month INTEGER NOT NULL,
-    year INTEGER NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES categories(id),
-    UNIQUE(user_id, category_id, month, year)
-);
-
 -- Sessions table
 CREATE TABLE IF NOT EXISTS sessions (
     id VARCHAR(128) PRIMARY KEY,
