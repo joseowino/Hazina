@@ -36,9 +36,8 @@ CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     bank_account INTEGER NOT NULL,
     trnsaction_account INTEGER NOT NULL,
-    category_id INTEGER NOT NULL,
+    category VARCHAR(20) NOT NULL CHECK (category IN('income', 'expense')),
     company_id INTEGER NOT NULL
-    particulars VARCHAR(100)
     amount DECIMAL(10,2) NOT NULL,
     memo TEXT,
     transaction_date DATE NOT NULL,
@@ -46,7 +45,6 @@ CREATE TABLE IF NOT EXISTS transactions (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (bank_account) REFERENCES accounts(id) ON DELETE CASCADE,
     FOREIGN KEY (trnsaction_account) REFERENCES accounts(id) ON DELETE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
     FOREIGN KEY (company_id) REFERENCES companies(id)
 );
 
