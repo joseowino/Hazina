@@ -23,12 +23,10 @@ CREATE TABLE IF NOT EXISTS accounts (
 -- Categories table
 CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    type VARCHAR(10) NOT NULL CHECK (type IN ('income', 'expense')),
+    category_name VARCHAR(100) NOT NULL,
+    category_type VARCHAR(10) NOT NULL CHECK (type IN ('income', 'expense')),
     color VARCHAR(7) DEFAULT '#007bff',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Transactions table
