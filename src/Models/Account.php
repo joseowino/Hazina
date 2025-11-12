@@ -15,14 +15,13 @@ class Account
     
     public function create(array $data): bool
     {
-        $sql = "INSERT INTO accounts (user_id, name, type, balance) 
-                VALUES (:user_id, :name, :type, :balance)";
+        $sql = "INSERT INTO accounts (account_name, account_type, memo) 
+                VALUES (:account_name, :account_type, :memo)";
                 
         $params = [
-            ':user_id' => $data['user_id'],
-            ':name' => $data['name'],
-            ':type' => $data['type'],
-            ':balance' => $data['balance'] ?? 0.00
+            ':account_name' => $data['account_name'],
+            ':account_type' => $data['account_type'],
+            ':memo' => $data['memo'] 
         ];
         
         try {
