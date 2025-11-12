@@ -57,6 +57,7 @@ class Account
             ':id' => $id,
             ':account_name' => $data['account_name'],
             ':account_type' => $data['account_type'],
+            ':is_active' => $data['is_active'],
             ':memo' => $data['memo'] ?? null
         ];
         
