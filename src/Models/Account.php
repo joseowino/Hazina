@@ -69,13 +69,4 @@ class Account
         }
     }
     
-    
-    public function getTotalBalance(): float
-    {
-        $sql = "SELECT COUNT(*) as total FROM accounts WHERE is_active = 1";
-        $stmt = $this->db->query($sql);
-        $result = $stmt->fetch();
-        
-        return (float)($result['total'] ?? 0);
-    }
 }
