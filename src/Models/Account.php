@@ -50,7 +50,7 @@ class Account
     
     public function update(int $id, array $data): bool
     {
-        $sql = "UPDATE accounts SET account_name = :account_name, account_type = :account_type, memo = :memo,
+        $sql = "UPDATE accounts SET account_name = :account_name, account_type = :account_type, is_active = :is_active, memo = :memo,
                 updated_at = CURRENT_TIMESTAMP WHERE id = :id";
                 
         $params = [
