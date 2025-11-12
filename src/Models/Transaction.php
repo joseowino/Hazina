@@ -34,11 +34,7 @@ class Transaction
             ];
             
             $this->db->query($sql, $params);
-            
-            // Update account balance
-            $accountModel = new Account();
-            $accountModel->updateBalance($data['account_id'], $data['amount']);
-            
+                        
             $conn->commit();
             return true;
             
