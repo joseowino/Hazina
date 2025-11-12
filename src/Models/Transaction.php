@@ -158,7 +158,7 @@ class Transaction
         $params = [
             ':category' => $category,
             ':month' => sprintf('%02d', $month),
-            ':year' => (string)$year
+            ':year' => $year
         ];
 
         $stmt = $this->db->prepare($sql);
