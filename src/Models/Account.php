@@ -69,17 +69,6 @@ class Account
         }
     }
     
-    public function delete(int $id): bool
-    {
-        $sql = "UPDATE accounts SET is_active = 0 WHERE id = :id";
-        
-        try {
-            $this->db->query($sql, [':id' => $id]);
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
     
     public function getTotalBalance(): float
     {
