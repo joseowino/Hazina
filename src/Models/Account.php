@@ -32,14 +32,14 @@ class Account
         }
     }
     
-    public function getByName(int $userId): array
+    public function getByName(string $accountName): array
     {
         $sql = "SELECT * FROM accounts WHERE account_name = :account_name AND is_active = 1 ORDER BY account_name";
-        $stmt = $this->db->query($sql, [':account_name' => $account_name]);
+        $stmt = $this->db->query($sql, [':account_name' => $accountName]);
         return $stmt->fetchAll();
     }
     
-    public function findById(int $id): ?array
+    public function findById(int $id)
     {
         $sql = "SELECT * FROM accounts WHERE id = :id";
         $stmt = $this->db->query($sql, [':id' => $id]);
@@ -50,13 +50,14 @@ class Account
     
     public function update(int $id, array $data): bool
     {
-        $sql = "UPDATE accounts SET name = :name, type = :type, 
+        $sql = "UPDATE accounts SET account_name = :account_name, account_type = :account_type, memo = :memo,
                 updated_at = CURRENT_TIMESTAMP WHERE id = :id";
                 
         $params = [
             ':id' => $id,
-            ':name' => $data['name'],
-            ':type' => $data['type']
+            ':account_name' => $data['account_name'],
+            ':account_type' => $data['account_type'],
+            ':memo' => $data['memo'] ?? null
         ];
         
         try {
@@ -79,26 +80,10 @@ class Account
         }
     }
     
-    public function updateBalance(int $accountId, float $amount): bool
+    public function getTotalBalance(): float
     {
-        $sql = "UPDATE accounts SET balance = balance + :amount WHERE id = :id";
-        
-        try {
-            $this->db->query($sql, [
-                ':amount' => $amount,
-                ':id' => $accountId
-            ]);
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-    
-    public function getTotalBalance(int $userId): float
-    {
-        $sql = "SELECT SUM(balance) as total FROM accounts 
-                WHERE user_id = :user_id AND is_active = 1";
-        $stmt = $this->db->query($sql, [':user_id' => $userId]);
+        $sql = "SELECT COUNT(*) as total FROM accounts WHERE is_active = 1";
+        $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
         
         return (float)($result['total'] ?? 0);
