@@ -32,10 +32,10 @@ class Account
         }
     }
     
-    public function getByUserId(int $userId): array
+    public function getByName(int $userId): array
     {
-        $sql = "SELECT * FROM accounts WHERE user_id = :user_id AND is_active = 1 ORDER BY name";
-        $stmt = $this->db->query($sql, [':user_id' => $userId]);
+        $sql = "SELECT * FROM accounts WHERE account_name = :account_name AND is_active = 1 ORDER BY account_name";
+        $stmt = $this->db->query($sql, [':account_name' => $account_name]);
         return $stmt->fetchAll();
     }
     
