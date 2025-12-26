@@ -6,10 +6,11 @@ use App\Database;
 
 try {
     $db = Database::getInstance();
-    
+
     // Read and execute schema
     $schema = file_get_contents(__DIR__ . '/schema.sql');
-    $db->getConnection()->exec($schema);
+    $dbo = $db->getDbo();
+    $dbo->exec($schema);
     
     echo "Database setup completed successfully!\n";
     
