@@ -8,7 +8,7 @@ use PDOException;
 class Database
 {
     private static $instance = null;
-    private $connection;
+    private $dbo;
     
     private function __construct()
     {
@@ -22,13 +22,10 @@ class Database
         }
         
         try {
-            $this->connection = new PDO("sqlite:$dbPath");
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            
-            // Enable foreign key constraints
-            $this->connection->exec('PRAGMA foreign_keys = ON');
-            
+            $this->dbo = new PDO("sqlite:$dbPath");
+            $this->dbo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->dbo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                        
         } catch (PDOException $e) {
             throw new \Exception("Database connection failed: " . $e->getMessage());
         }
@@ -42,20 +39,20 @@ class Database
         return self::$instance;
     }
     
-    public function getConnection(): PDO
+    public function getDbo(): PDO
     {
-        return $this->connection;
+        return $this->dbo;
     }
     
     public function query(string $sql, array $params = []): \PDOStatement
     {
-        $stmt = $this->connection->prepare($sql);
+        $stmt = $this->dbo->prepare($sql);
         $stmt->execute($params);
         return $stmt;
     }
     
     public function lastInsertId(): string
     {
-        return $this->connection->lastInsertId();
+        return $this->dbo->lastInsertId();
     }
 }
