@@ -1,3 +1,5 @@
+PRAGMA foregn_key=on;
+
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,7 +30,7 @@ CREATE TABLE IF NOT EXISTS accounts (
     is_active BOOLEAN DEFAULT 1,
     memo TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Transactions table
