@@ -9,8 +9,8 @@ try {
 
     // Read and execute schema
     $schema = file_get_contents(__DIR__ . '/schema.sql');
-    $dbo = $db->getDbo();
-    $dbo->exec($schema);
+    $pdo = $db->getPdo();
+    $pdo->exec($schema);
     
     echo "Database setup completed successfully!\n";
     
