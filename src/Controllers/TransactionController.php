@@ -16,7 +16,7 @@ class TransactionController
     {
         $this->transactionModel = new Transaction();
         $this->accountModel = new Account();
-        $this->categoryModel = new Category();
+        // $this->categoryModel = new Category();
     }
     
     public function index(): void

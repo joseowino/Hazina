@@ -39,7 +39,7 @@ class Account
         return $stmt->fetchAll();
     }
     
-    public function findById(int $id)
+    public function getById(int $id)
     {
         $sql = "SELECT * FROM accounts WHERE id = :id";
         $stmt = $this->db->query($sql, [':id' => $id]);

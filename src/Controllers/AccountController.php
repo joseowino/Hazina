@@ -17,8 +17,8 @@ class AccountController
     {
         $this->requireAuth();
         
-        $accounts = $this->accountModel->getByUserId($_SESSION['user_id']);
-        $totalBalance = $this->accountModel->getTotalBalance($_SESSION['user_id']);
+        // $accounts = $this->accountModel->getByUserId($_SESSION['user_id']);
+        // $totalBalance = $this->accountModel->getTotalBalance($_SESSION['user_id']);
         
         include __DIR__ . '/../../templates/accounts/index.php';
     }
@@ -38,7 +38,7 @@ class AccountController
     {
         $this->requireAuth();
         
-        $account = $this->accountModel->findById($id);
+        $account = $this->accountModel->getById($id);
         
         if (!$account || $account['user_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = 'Account not found.';
@@ -53,25 +53,25 @@ class AccountController
         }
     }
     
-    public function delete(int $id): void
-    {
-        $this->requireAuth();
+    // public function delete(int $id): void
+    // {
+    //     $this->requireAuth();
         
-        $account = $this->accountModel->findById($id);
+    //     $account = $this->accountModel->getById($id);
         
-        if ($account && $account['user_id'] == $_SESSION['user_id']) {
-            if ($this->accountModel->delete($id)) {
-                $_SESSION['success'] = 'Account deleted successfully.';
-            } else {
-                $_SESSION['error'] = 'Failed to delete account.';
-            }
-        } else {
-            $_SESSION['error'] = 'Account not found.';
-        }
+    //     if ($account && $account['user_id'] == $_SESSION['user_id']) {
+    //         if ($this->accountModel->delete($id)) {
+    //             $_SESSION['success'] = 'Account deleted successfully.';
+    //         } else {
+    //             $_SESSION['error'] = 'Failed to delete account.';
+    //         }
+    //     } else {
+    //         $_SESSION['error'] = 'Account not found.';
+    //     }
         
-        header('Location: /accounts.php');
-        exit;
-    }
+    //     header('Location: /accounts.php');
+    //     exit;
+    // }
     
     private function processCreate(): void
     {
@@ -116,7 +116,7 @@ class AccountController
             }
         }
         
-        $account = $this->accountModel->findById($id);
+        $account = $this->accountModel->getById($id);
         $account = array_merge($account, $data);
         $this->showEditForm($account, $errors);
     }

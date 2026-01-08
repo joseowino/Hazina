@@ -33,7 +33,7 @@ class User
         }
     }
     
-    public function findByEmail(string $email): ?array
+    public function getByEmail(string $email): ?array
     {
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->db->query($sql, [':email' => $email]);
@@ -42,7 +42,7 @@ class User
         return $user ?: null;
     }
     
-    public function findById(int $id): ?array
+    public function getById(int $id): ?array
     {
         $sql = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->db->query($sql, [':id' => $id]);
@@ -58,6 +58,6 @@ class User
     
     public function emailExists(string $email): bool
     {
-        return $this->findByEmail($email) !== null;
+        return $this->getByEmail($email) !== null;
     }
 }
