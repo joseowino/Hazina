@@ -28,6 +28,7 @@ class AuthController
         session_start();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->processLogin();
+            
         } else {
             $this->showLoginForm();
         }
@@ -76,7 +77,9 @@ class AuthController
         if (empty($email) || empty($password)) {
             $errors[] = 'Email and password are required.';
         } else {
-            $user = $this->userModel->findByEmail($email);
+            $user = $this->userModel->getByEmail($email);
+
+            echo($user['email']);
             
             if ($user && $this->userModel->verifyPassword($password, $user['password_hash'])) {
                 $_SESSION['user_id'] = $user['id'];
@@ -118,7 +121,6 @@ class AuthController
         } elseif (strlen($data['password']) < 8) {
             $errors[] = 'Password must be at least 8 characters long.';
         }
-        
         if ($data['password'] !== $data['password_confirm']) {
             $errors[] = 'Passwords do not match.';
         }
