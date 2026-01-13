@@ -13,7 +13,7 @@ class User
         $this->db = Database::getInstance();
     }
     
-    public function create(array $data): bool
+    public function create(array $data): bool 
     {
         $sql = "INSERT INTO users (email, password_hash, first_name, last_name) 
                 VALUES (:email, :password_hash, :first_name, :last_name)";
@@ -29,7 +29,7 @@ class User
             $this->db->query($sql, $params);
             return true;
         } catch (\Exception $e) {
-            echo'Error creating user: ' . $e->getMessage();
+            throw new \Exception('Create user failed: ' . $e->getMessage(), 0, $e);
             return false;
         }
     }
