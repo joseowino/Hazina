@@ -29,6 +29,7 @@ class User
             $this->db->query($sql, $params);
             return true;
         } catch (\Exception $e) {
+            echo'Error creating user: ' . $e->getMessage();
             return false;
         }
     }
